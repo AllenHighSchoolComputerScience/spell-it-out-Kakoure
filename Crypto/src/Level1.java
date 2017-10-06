@@ -78,5 +78,22 @@ public class Level1 {
         }
         return -999;
     }
+    public int prob5(){
+        int a;
+        int b;
+        int c;
+        for (a = 0; a< 10;a++){
+            for(b=0;b<10;b++){
+                for (c=0;c<10;c++){
+                    if (a!=b && b!= c && a != c){
+                        if (3*((a*100)+(b*10)+c) == c*111){
+                            return a*b*c;
+                        }
+                    }
+                }
+            }
+        }
+        return -999;
+    }
 
 }
