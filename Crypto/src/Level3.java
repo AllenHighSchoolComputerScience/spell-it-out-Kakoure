@@ -160,14 +160,17 @@ public class Level3 {
                     if (dig1 == 7 || dig1 == 8 || dig1 == 1) {
                         dig2++;
                     }
-                    if (dig1 == 0) {
-                        while (dig2 == 7 || dig2 == 8 || dig2 == 1) {
-                            dig2++;
-                        }
-                        if (totalval + (multivalues[dig2] * dig1) + (multivalues[dig1] * dig2) - (multivalues[dig1] * dig1) - (multivalues[dig2] * dig2) == 0) {
-                            return dig1 + dig2;
-                        }
+
+
+                }
+                if (dig1 == 0) {
+                    while (dig2 == 7 || dig2 == 8 || dig2 == 1) {
+                        dig2++;
                     }
+
+                }
+                if (totalval + (multivalues[dig2] * dig1) + (multivalues[dig1] * dig2) - (multivalues[dig1] * dig1) - (multivalues[dig2] * dig2) == 0) {
+                    return dig1 + dig2;
                 }
             }
         }

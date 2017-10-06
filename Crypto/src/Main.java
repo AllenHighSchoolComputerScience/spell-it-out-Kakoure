@@ -7,6 +7,7 @@ public class Main {
         Level1 crypto1 = new Level1();
         Level2 crypto2 = new Level2();
         Level3 crypto3 = new Level3();
+        Bonus cryptobonus = new Bonus();
         System.out.println("---------------------------");
         System.out.println("Level 1 Problem 1");
         System.out.println(crypto1.prob1());
@@ -40,5 +41,7 @@ public class Main {
         System.out.println(crypto3.prob4());
         System.out.println("Level 3 Problem 5");
         System.out.println(crypto3.prob5());
+        System.out.println("---------------------------");
+        System.out.println(cryptobonus.NumToString(1809234));
 }
 }
