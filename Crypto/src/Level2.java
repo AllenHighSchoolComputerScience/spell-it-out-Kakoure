@@ -90,4 +90,31 @@ public class Level2 {
         }
         return -999;
     }
+    public int prob5(){
+        int a;
+        int b;
+        int c;
+        int d;
+        for (a = 1; a< 10;a++) {
+            for (b = 0; b < 10; b++) {
+                while (b == a) {
+                    b++;
+                }
+                for (c = 0; c < 10; c++) {
+                    while (c == b || c == a) {
+                        c++;
+                    }
+                    for (d = 1; d < 10; d++) {
+                        while (d == c || d == b || d == a) {
+                            d++;
+                        }
+                        if (((a * 1000) + (b * 100) + (c * 10) + d) * d == (d * 1000) + (c * 100) + (b * 10) + a) {
+                            return a + b + c + d;
+                        }
+                    }
+                }
+            }
+        }
+        return -999;
+    }
 }
