@@ -42,6 +42,10 @@ public class Main {
         System.out.println("Level 3 Problem 5");
         System.out.println(crypto3.prob5());
         System.out.println("---------------------------");
-        System.out.println(cryptobonus.NumToString(1809234));
+        System.out.println("Bonus Problem 1");
+        System.out.println(cryptobonus.bonusprob1());
+        System.out.println("Bonus Problem 2");
+        System.out.println(cryptobonus.bonusprob2());
+
 }
 }

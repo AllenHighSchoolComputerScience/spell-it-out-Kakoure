@@ -63,22 +63,44 @@ public class Level2 {
         return -999;
     }
     public int prob4(){
-        int s;
-        int e;
-        int n;
-        int d;
-        int m;
-        int r;
-        int y;
+        int s = -1;
+        int e = -1;
+        int n = -1;
+        int d = -1;
+        int m = -1;
+        int r = -1;
+        int y = -1;
         int o = 0;
         for (s = 1 ; s< 10; s++){
             for (e = 1; e < 10; e++){
+                while (e == s){
+                    e++;
+                }
                 for (n = 1; n < 10; n++){
+                    while (n == e || n == s){
+                        n++;
+                    }
                     for (d = 1; d < 10; d++){
+                        while (d == n || d == e || d == s){
+                            d++;
+                        }
                         for (m = 1; m < 10; m++){
+                            while (m == d || m == n || m == e || m == s){
+                                m++;
+                            }
                             for (r = 1; r < 10;r++){
+                                while (r == m || r == d || r == n || r== e || r == s){
+                                    r++;
+                                }
                                 for (y = 1; y < 10; y++){
+                                    while (y == r || y == m || y == d || y == n || y == e || y == s){
+                                        y++;
+                                    }
                                     if (s*1000 + e*101+n*10+d+r*10+m*1000+o*100 == m*10000+o*1000+n*100+e*10+y){
+                                        /*int[] temp = {s, e, n ,d ,m , r,y};
+                                        for (int i = 0; i < temp.length;i++) {
+                                            System.out.println(temp[i]);
+                                        }*/
                                         return m*10000+o*1000+n*100+e*10+y;
                                     }
                                 }
@@ -88,6 +110,7 @@ public class Level2 {
                 }
             }
         }
+
         return -999;
     }
     public int prob5(){

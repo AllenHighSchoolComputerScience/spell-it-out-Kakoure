@@ -3,31 +3,86 @@
  */
 public class Bonus {
     public int bonusprob1(){
-       return 0;
+        //Find longest group of 3, then longest group of 2
+        int maxnum3 = 0;
+        int maxnum2 = 1;
+        int maxnumB = 1;
+        for (int i = 0; i < 1000;i++){
+           if (NumToString(i).length()>NumToString(maxnum3).length()){
+               maxnum3 = i;
+           }
+            if (i > 0 && i < 100){
+                if (NumToString(i).length()>NumToString(maxnum2).length()){
+                    maxnum2 = i;
+                }
+            }
+            if ( i > 0 && i < 3){
+                if (shortNumToString(i).length()>shortNumToString(maxnumB).length()){
+                    maxnumB = i;
+                }
+            }
+        }
+       double longestNum = (maxnumB*1000000000) + (maxnum3 * 1001001) + ((double)(maxnum2)/100.0);
+     // System.out.println("" + longestNum);
+     //   System.out.println(NumToString(longestNum));
+      return NumLength(longestNum);
+
+
+    }
+    public int bonusprob2(){
+        int maxnum3 = 0;
+        int maxnum2 = 1;
+        int maxnumB = 1;
+        for (int i = 0; i < 1000;i++){
+            if (removeSpaces(NumToString(i)).length()>removeSpaces(NumToString(maxnum3)).length()){
+                maxnum3 = i;
+            }
+            if (i > 0 && i < 100){
+                if (removeSpaces(NumToString(i)).length()>removeSpaces(NumToString(maxnum2)).length()){
+                    maxnum2 = i;
+                }
+            }
+            if ( i > 0 && i < 3){
+                if (shortNumToString(i).length()>shortNumToString(maxnumB).length()){
+                    maxnumB = i;
+                }
+            }
+        }
+        double longestNum = (maxnumB*1000000000) + (maxnum3 * 1001001) + ((double)(maxnum2)/100.0);
+        //System.out.println("" + longestNum);
+       // System.out.println(removeSpaces(NumToString(longestNum)));
+        return removeSpaces(NumToString(longestNum)).length();
+
+    }
+    public int NumLength(int num){
+        return NumToString(num).length();
+    }
+    public int NumLength(double num){
+        return NumToString(num).length();
     }
     public String NumToString(int num){
         String ret = "";
         int temp;
         if (num >= 1000000000){
-            temp = num % 1000000000;
+            temp = num / 1000000000;
             ret += shortNumToString(temp);
-            ret += " Million";
+            ret += " Billion";
             if (num - ((num / 1000000000) * 1000000000) != 0){
                 ret += " ";
             }
             num -= ((num / 1000000000) * 1000000000);
         }
         if (num >= 1000000){
-            temp = num % 1000000;
+            temp = num / 1000000;
             ret += shortNumToString(temp);
-            ret += " Thousand";
+            ret += " Million";
             if (num - ((num / 1000000) * 1000000) != 0){
                 ret += " ";
             }
             num -= ((num / 1000000) * 1000000);
         }
         if (num >= 1000){
-            temp = num % 1000;
+            temp = num / 1000;
             ret += shortNumToString(temp);
             ret += " Thousand";
             if (num - ((num / 1000) * 1000) != 0){
@@ -35,18 +90,46 @@ public class Bonus {
             }
             num -= ((num / 1000) * 1000);
         }
+
         ret += shortNumToString(num);
+        ret += " Dollar";
+        if (num != 1){
+            ret += "s";
+        }
+
+        return ret;
+    }
+    public String NumToString(double dub){
+        String ret = "";
+        double newMoney = dub * 100.0;
+        int DOLLARS = (int)(newMoney / 100);
+        int CENTS = (int)(newMoney % 100);
+
+        ret += NumToString(DOLLARS);
+
+
+
+
+        if (CENTS > 0) {
+            ret += " and ";
+            ret += shortNumToString(CENTS);
+
+            ret += " Cent";
+            if (CENTS != 1){
+                ret += "s";
+            }
+        }
         return ret;
     }
     //For numbers between 1-100
-    public String shortNumToString(int num){
+    public String shortNumToString(int number){
         String ret = "";
-        if (num == 0){
+        if (number == 0){
             return "Zero";
         }
         boolean teen = false;
-        if (num >= 100) {
-            switch (num / 100) {
+        if (number >= 100) {
+            switch (number / 100) {
                 case 1:
                     ret += "One";
                     break;
@@ -76,14 +159,14 @@ public class Bonus {
                     break;
             }
             ret += " Hundred ";
-            if (num % 100 != 0) {
+            if (number % 100 != 0) {
                 ret += "and ";
             }
-            num = num - ((num / 100) * 100);
+            number = number - ((number / 100) * 100);
         }
-            if (num >= 10){
+            if (number >= 10){
 
-                switch(num / 10){
+                switch(number / 10){
                     case 1:
                         teen = true;
                         break;
@@ -109,16 +192,16 @@ public class Bonus {
                         ret += "Eighty";
                         break;
                     case 9:
-                        ret += "Ninety";
+                        ret += "NIENty";
                         break;
                     }
-                    if (num % 10 != 0 && !teen) {
+                    if (number % 10 != 0 && !teen) {
                     ret += " ";
                     }
-                num = num - ((num / 10) * 10);
+                number = number - ((number / 10) * 10);
                 }
             if (teen){
-                switch(num){
+                switch(number){
                     case 0:
                         ret += "Ten";
                         break;
@@ -147,11 +230,11 @@ public class Bonus {
                         ret += "Eighteen";
                         break;
                     case 9:
-                        ret += "Nineteen";
+                        ret += "NIENteen";
                         break;
                 }
                 }else {
-                switch(num){
+                switch(number){
                     case 1:
                         ret += "One";
                         break;
@@ -185,7 +268,12 @@ public class Bonus {
             return ret;
 
     }
-    public String lengthfinder (double num){
-        return "";
+    public String removeSpaces(String str){
+        if (str.length() < 1){
+            return "";
+        }
+        if (str.substring(0,1).equals(" ")){
+            return removeSpaces(str.substring(1));
+        } else return str.charAt(0)+removeSpaces(str.substring(1));
     }
 }
