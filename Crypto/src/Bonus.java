@@ -54,6 +54,16 @@ public class Bonus {
         return removeSpaces(NumToString(longestNum)).length();
 
     }
+    public int bonusprob3(){
+        int ret = 0;
+        for (int i = 0; i <= 2000000;i++){
+            ret += removeSpaces(NumToStringNoDollar(i)).length();
+        }
+
+
+
+    return ret;
+    }
     public int NumLength(int num){
         return NumToString(num).length();
     }
@@ -97,6 +107,45 @@ public class Bonus {
             ret += "s";
         }
 
+        return ret;
+    }
+    public String NumToStringNoDollar(int num){
+        String ret = "";
+        int temp;
+        if (num >= 1000000000){
+            temp = num / 1000000000;
+            ret += shortNumToString(temp);
+            ret += " Billion";
+            if (num - ((num / 1000000000) * 1000000000) != 0){
+                ret += " ";
+            }
+            num -= ((num / 1000000000) * 1000000000);
+        }
+        if (num >= 1000000){
+            temp = num / 1000000;
+            ret += shortNumToString(temp);
+            ret += " Million";
+            if (num - ((num / 1000000) * 1000000) != 0){
+                ret += " ";
+            }
+            num -= ((num / 1000000) * 1000000);
+        }
+        if (num >= 1000){
+            temp = num / 1000;
+            ret += shortNumToString(temp);
+            ret += " Thousand";
+            if (num - ((num / 1000) * 1000) != 0){
+                ret += " ";
+            }
+            num -= ((num / 1000) * 1000);
+        }
+/*
+        ret += shortNumToString(num);
+        ret += " Dollar";
+        if (num != 1){
+            ret += "s";
+        }
+*/
         return ret;
     }
     public String NumToString(double dub){
@@ -276,4 +325,5 @@ public class Bonus {
             return removeSpaces(str.substring(1));
         } else return str.charAt(0)+removeSpaces(str.substring(1));
     }
+
 }

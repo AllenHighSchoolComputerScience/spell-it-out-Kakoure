@@ -46,6 +46,8 @@ public class Main {
         System.out.println(cryptobonus.bonusprob1());
         System.out.println("Bonus Problem 2");
         System.out.println(cryptobonus.bonusprob2());
+        System.out.println("Bonus Problem 3");
+        System.out.println(cryptobonus.bonusprob3());
 
 }
 }
