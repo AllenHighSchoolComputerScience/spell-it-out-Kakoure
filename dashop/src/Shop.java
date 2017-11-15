@@ -1,6 +1,7 @@
 /**
  * Created by 230645 on 11/15/2017.
  */
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.io.File;
 public class Shop {
@@ -20,33 +21,70 @@ public class Shop {
             products[numProducts] = new Product(tempId, tempName, tempPrice);
             numProducts++;
         }
-        boolean loop = true;
+
+
+        boolean betaLoop = true;
+        boolean alphaLoop = true;
         boolean checking;
-        int pluRead;
+        int pluRead = 0;
         double weight;
+        String decide;
         double totalCost = 0;
-        System.out.println("Welcome to the Shop! Enter a PLU code or 0 to finish shopping.");
-        while(loop){
-            pluRead = inputs.nextInt();
-            checking = true;
-            numProducts = 0;
-            while (checking){
-                if (pluRead == products[numProducts].checkCode()){
-                    checking = false;
+        while (alphaLoop) {
+            System.out.println("Welcome to the Shop! Enter a PLU code or 0 to finish shopping.");
+            while (betaLoop) {
+                pluRead = inputs.nextInt();
+                checking = true;
+                numProducts = 0;
+                if (pluRead == 0) {
+                    betaLoop = false;
                 } else {
-                    numProducts++;
+                    while (checking) {
+                        if (pluRead == products[numProducts].checkCode()) {
+                            checking = false;
+                        } else {
+                            if (products[numProducts].checkCode() == -1) {
+                                checking = false;
+                            } else {
+                                numProducts++;
+                            }
+                        }
+                    }
+                    if (products[numProducts].checkCode() == -1) {
+                        System.out.println("PLU Code not found. Please try again...");
+                    } else {
+                        System.out.print("You have selected ");
+                        System.out.print(products[numProducts].checkName());
+                        System.out.println(". Please Enter Weight.");
+                        weight = inputs.nextDouble();
+                        totalCost += products[numProducts].findCost(weight);
+                        System.out.print("You have added $");
+                        System.out.print(products[numProducts].findCost(weight));
+                        System.out.print(" to your balance, for a total cost of $");
+                        System.out.print(totalCost);
+                        System.out.println(". Enter another PLU code or 0  to finish Shopping.");
+                    }
                 }
             }
-            System.out.print("You have selected ");
-            System.out.print(products[numProducts].name);
-            System.out.println(". Please Enter Weight.");
-            weight = inputs.nextDouble();
-            totalCost += products[numProducts].findCost(weight);
-            System.out.print("You have added $");
-            System.out.print(products[numProducts].findCost(weight));
-            System.out.print(" to your balance, for a total cost of $");
+            System.out.print("Your total cost is $");
             System.out.print(totalCost);
-            System.out.println(". Enter another PLU code or 0  to finish Shopping.");
+            System.out.println(". Have a nice day!");
+            System.out.println("Would you like to shop again? (y/n)");
+            checking = true;
+            while(checking) {
+                decide = inputs.next();
+                if (decide.equals("y")){
+                    checking = false;
+                    betaLoop = true;
+                    System.out.println("Okay!");
+                } else if (decide.equals("n")){
+                    checking = false;
+                    alphaLoop = false;
+                    System.out.println("Okay, Goodbye.");
+                } else {
+                    System.out.println("Input not recognized. Please try again.");
+                }
+            }
         }
     }
 
